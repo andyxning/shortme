@@ -79,6 +79,20 @@ func ShortURL(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var shortenedURL string
+
+	//check the longURL is existed
+	shortenedURL, err = short.Shorter.Query(shortReq.LongURL)
+	if err == nil && shortenedURL != "" {
+		shortenedURL = (&url.URL{
+			Scheme: conf.Conf.Common.Schema,
+			Host:   conf.Conf.Common.DomainName,
+			Path:   shortenedURL,
+		}).String()
+		shortResp, _ := json.Marshal(shortResp{ShortURL: shortenedURL})
+		w.Write(shortResp)
+		return
+	}
+
 	shortenedURL, err = short.Shorter.Short(shortReq.LongURL)
 	shortenedURL = (&url.URL{
 		Scheme: conf.Conf.Common.Schema,

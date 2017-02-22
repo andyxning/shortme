@@ -144,6 +144,19 @@ func (shorter *shorter) Short(longURL string) (shortURL string, err error) {
 	return shortURL, nil
 }
 
+func (shorter *shorter) Query(longURL string) (shortURL string, err error) {
+
+	querySQL := `SELECT short_url FROM short WHERE long_url = ? `
+
+	row := shorter.readDB.QueryRow(querySQL, longURL)
+
+	if err = row.Scan(&shortURL); err != nil {
+		log.Printf("short read db query error. %v", err)
+		return "", errors.New("short read db query error")
+	}
+
+	return shortURL, nil
+}
 var Shorter shorter
 
 func Start() {

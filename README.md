@@ -356,9 +356,3 @@ server such as **Nginx**. Under this way, the statistics info can be analysed
 self phone. This remains to be tested more meticulous.  
 * One demand about customizing the short url can not be done easily currently
  in **shortme** according to the id generation logic. Let's make it happen. :)
-
-### Orange Juice
----
-I like drinking orange juice. I will appreciate that if you can give me a cup of orange juice. :)
-
-<img src="WeChatPay.png" height="20%" width="20%"> <img src="AliPay.jpeg" height="20%" width="20%">
